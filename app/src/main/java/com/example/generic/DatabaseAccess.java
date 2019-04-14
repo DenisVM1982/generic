@@ -63,9 +63,33 @@ public class DatabaseAccess {
      *
      * @return a List of quotes
      */
-    public List<String> getQuotes() {
-        List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT * FROM quotes", null);
+    public List<String> getQuotes1() {
+        ArrayList<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT Tiporazmer FROM Table1", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return list;
+    }
+
+        public List<String> getQuotes2() {
+            ArrayList<String> list = new ArrayList<>();
+            Cursor cursor = database.rawQuery("SELECT Mosznost FROM Table1", null);
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                list.add(cursor.getString(0));
+                cursor.moveToNext();
+            }
+            cursor.close();
+            return list;
+        }
+
+    public List<String> getQuotes3() {
+        ArrayList<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT Oboroty FROM Table1", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));

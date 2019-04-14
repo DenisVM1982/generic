@@ -16,7 +16,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+
+import de.codecrafters.tableview.TableView;
+import de.codecrafters.tableview.toolkit.SimpleTableDataAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,10 +64,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         databaseAccess.open();
-        List<String> quotes = databaseAccess.getQuotes();
+        ArrayList<String> quotes1 = (ArrayList<String>) databaseAccess.getQuotes1();
+
         databaseAccess.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, quotes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, quotes1);
         this.listView.setAdapter(adapter);
         this.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
@@ -76,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
